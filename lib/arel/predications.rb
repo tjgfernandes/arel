@@ -57,11 +57,11 @@ module Arel
         if other.exclude_end?
           left  = Nodes::LessThan.new(self, other.begin)
           right = Nodes::GreaterThanOrEqual.new(self, other.end)
-          Nodes::Or.new left, right
+          Nodes::Or.new [left, right]
         else
           left  = Nodes::LessThan.new(self, other.begin)
           right = Nodes::GreaterThan.new(self, other.end)
-          Nodes::Or.new left, right
+          Nodes::Or.new [left, right]
         end
       else
         Nodes::NotIn.new self, other
@@ -153,7 +153,7 @@ module Arel
     def grouping_any method_id, others
       nodes = others.map {|expr| send(method_id, expr)}
       Nodes::Grouping.new nodes.inject { |memo,node|
-        Nodes::Or.new(memo, node)
+        Nodes::Or.new [memo, node]
       }
     end
 

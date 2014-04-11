@@ -6,6 +6,7 @@ module Arel
 
       def initialize cores = [SelectCore.new]
         #puts caller
+        cores = [ cores ] unless Array === cores        
         @cores          = cores
         @orders         = []
         @limit          = nil

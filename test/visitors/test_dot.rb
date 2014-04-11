@@ -36,7 +36,6 @@ module Arel
         Arel::Nodes::Ordering,
         Arel::Nodes::Having,
         Arel::Nodes::UnqualifiedColumn,
-        Arel::Nodes::Top,
         Arel::Nodes::Limit,
       ].each do |klass|
         define_method("test_#{klass.name.gsub('::', '_')}") do

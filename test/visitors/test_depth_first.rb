@@ -32,7 +32,6 @@ module Arel
         Arel::Nodes::Having,
         Arel::Nodes::StringJoin,
         Arel::Nodes::UnqualifiedColumn,
-        Arel::Nodes::Top,
         Arel::Nodes::Limit,
       ].each do |klass|
         define_method("test_#{klass.name.gsub('::', '_')}") do

@@ -231,7 +231,11 @@ module Arel
     end
 
     def join_sources
-      @ctx.source.right
+      if @ctx.respond_to? :source
+        @ctx.source.right 
+      else
+        []
+      end
     end
 
     def source

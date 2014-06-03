@@ -175,7 +175,7 @@ module Arel
     end
 
     def where_sql
-      return if @ctx.wheres.empty?
+      return if !@ctx.respond_to?(:wheres) or @ctx.wheres.empty?
 
       viz = Visitors::WhereSql.new @engine.connection
       Nodes::SqlLiteral.new viz.accept @ctx
